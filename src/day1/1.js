@@ -1,9 +1,5 @@
 import {getInput} from '../utils/inputs.js';
 
-function isHigher(a, b){
-  return a > b;
-}
-
 function getHigherCount(arr){
   return arr.reduce((acc, val, i, prevArr) => {
     if(val > prevArr[i - 1]) return acc + 1;
@@ -11,15 +7,12 @@ function getHigherCount(arr){
   }, 0)
 }
 
+const sum = (arr) => arr.reduce((acc, num) => acc + num, 0);
+
 function sumXNextNums(arr, numbersToSum){
   return arr.map((val, i, initialArr) => {
-    let newVal = val;
-    for (let j = 1; j < numbersToSum; j++) {
-      if (initialArr[i + j]) {
-        newVal += initialArr[i + j];
-      }
-    }
-    return newVal
+    const numsToSum = initialArr.slice(i, i + numbersToSum);
+    return sum(numsToSum);
   })
 }
 
